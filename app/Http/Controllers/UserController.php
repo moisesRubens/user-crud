@@ -9,12 +9,13 @@ class UserController extends Controller
 {
     public function index()
     {
-        return User::all();
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
 
-    public function show($id)
+    public function create()
     {
-        return User::findOrFail($id);
+        return view('users.create');
     }
 
     public function store(Request $request)
@@ -25,9 +26,15 @@ class UserController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
-        $user = User::create($validated);
+        User::create($validated);
 
-        return response()->json($user, 201);
+        return redirect('/users/create')->with('success', 'Usuário criado com sucesso!');
+    }
+
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('users.edit', compact('user'));
     }
 
     public function update(Request $request, $id)
@@ -42,7 +49,7 @@ class UserController extends Controller
 
         $user->update($validated);
 
-        return response()->json($user);
+        return redirect('/users')->with('success', 'Usuário atualizado com sucesso!');
     }
 
     public function destroy($id)
@@ -50,6 +57,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return response()->json(['message' => 'User deleted successfully']);
+        return redirect('/users')->with('success', 'Usuário deletado com sucesso!');
     }
 }
