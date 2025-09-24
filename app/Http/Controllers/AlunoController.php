@@ -23,7 +23,7 @@ class AlunoController extends Controller
     //display de interação com o usuário
     public function create()
     {
-        //
+        $teste = null;
     }
 
     /**
