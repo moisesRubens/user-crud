@@ -17,6 +17,10 @@ class AlunoController extends Controller
         return view('index', compact('alunos_c'));
     }
 
+    public function login() {
+        return view('cadastro');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
