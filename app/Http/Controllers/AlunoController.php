@@ -17,8 +17,12 @@ class AlunoController extends Controller
         return view('index', compact('alunos_c'));
     }
 
+    public function view_login() {
+        return view('login');
+    }
+
     public function login() {
-        return view('cadastro');
+
     }
 
     /**
@@ -27,7 +31,7 @@ class AlunoController extends Controller
     //display de interação com o usuário
     public function create()
     {
-        $teste = null;
+        return view('register');
     }
 
     /**
